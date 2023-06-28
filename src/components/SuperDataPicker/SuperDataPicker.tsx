@@ -30,7 +30,10 @@ export function SuperDataPicker() {
 
     return <div>
 
-        <Settings isSettingsOpen={isSettingsOpen} setIsSettingsOpen={setIsSettingsOpen}/>
+        <Settings isSettingsOpen={isSettingsOpen}
+                  setIsSettingsOpen={setIsSettingsOpen}
+                  setStartDate={setStartDate}
+                  setEndDate={setEndDate}/>
 
         <ReactDatePicker
             selectsStart
