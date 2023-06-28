@@ -16,13 +16,26 @@ export function SuperDataPicker() {
 
     return <div>
         <ReactDatePicker
+            selectsStart
+            dateFormat={'dd-MM-yyyy'}
             placeholderText={'Select start date'}
+
+            startDate={startDate}
+            endDate={endDate}
+
             selected={startDate}
             onChange={(date) => onStartChangeHandler(date)}/>
 
         <ReactDatePicker
+            selectsEnd
+            dateFormat={'dd-MM-yyyy'}
             placeholderText={'Select end date'}
+
+            startDate={startDate}
+            endDate={endDate}
+
             selected={endDate}
-            onChange={(date) => onEndChangeHandler(date)}/>
+            onChange={(date) => onEndChangeHandler(date)}
+            minDate={startDate}/>
     </div>
 }
