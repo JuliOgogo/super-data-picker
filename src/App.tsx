@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import ReactDatePicker from 'react-datepicker';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    return (
+        <div className="App">
+            <SuperDataPicker/>
+        </div>
+    );
+}
+
+function SuperDataPicker() {
+
+    const [data, setData] = useState(new Date())
+
+    const onChangeHandler = (date: Date | null) => {
+        if (date) setData(date)
+    }
+
+    return <div>
+        <ReactDatePicker
+            placeholderText={'Select start date'}
+            selected={data}
+            onChange={(date) => onChangeHandler(date)}/>
     </div>
-  );
 }
 
 export default App;
