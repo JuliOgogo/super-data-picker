@@ -3,9 +3,8 @@ export function setToLocalStorage<T>(key: string, state: T) {
     localStorage.setItem(key, stateAsString)
 }
 
-export function getFromLocalStorage<T>(key: string, defaultState: T) {
-    let state = defaultState
-    const stateAsString = localStorage.getItem(key)
-    if (stateAsString !== null) state = JSON.parse(stateAsString) as T
-    return state
+export function getFromLocalStorage(key: string) {
+    let stateAsString = localStorage.getItem(key)
+    if (stateAsString !== null) stateAsString = JSON.parse(stateAsString)
+    return stateAsString
 }

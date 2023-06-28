@@ -26,6 +26,7 @@ export function SuperDataPicker() {
     const onClickHandler = () => {
         setStartDate(undefined)
         setEndDate(undefined)
+        localStorage.clear()
     }
 
     return <div>
