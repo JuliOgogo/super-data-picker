@@ -1,18 +1,28 @@
-import React, {useState} from "react";
-import ReactDatePicker from "react-datepicker";
+import React, {useState} from 'react';
+import ReactDatePicker from 'react-datepicker';
 
 export function SuperDataPicker() {
 
-    const [data, setData] = useState(new Date())
+    const [startDate, setStartDate] = useState(new Date())
+    const [endDate, setEndDate] = useState(new Date())
 
-    const onChangeHandler = (date: Date | null) => {
-        if (date) setData(date)
+    const onStartChangeHandler = (date: Date | null) => {
+        if (date) setStartDate(date)
+    }
+
+    const onEndChangeHandler = (date: Date | null) => {
+        if (date) setEndDate(date)
     }
 
     return <div>
         <ReactDatePicker
             placeholderText={'Select start date'}
-            selected={data}
-            onChange={(date) => onChangeHandler(date)}/>
+            selected={startDate}
+            onChange={(date) => onStartChangeHandler(date)}/>
+
+        <ReactDatePicker
+            placeholderText={'Select end date'}
+            selected={endDate}
+            onChange={(date) => onEndChangeHandler(date)}/>
     </div>
 }
