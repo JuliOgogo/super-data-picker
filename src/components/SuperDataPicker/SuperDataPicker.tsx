@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ReactDatePicker from 'react-datepicker';
 import {setToLocalStorage} from '../../common/localStorage';
+import {Settings} from './Settings/Settings';
 
 export function SuperDataPicker() {
 
@@ -29,7 +30,7 @@ export function SuperDataPicker() {
 
     return <div>
 
-        <Settings isSettingsOpen={isSettingsOpen}/>
+        <Settings isSettingsOpen={isSettingsOpen} setIsSettingsOpen={setIsSettingsOpen}/>
 
         <ReactDatePicker
             selectsStart
@@ -55,15 +56,5 @@ export function SuperDataPicker() {
             minDate={startDate}/>
 
         <button onClick={onClickHandler}>Refresh</button>
-    </div>
-}
-
-type SettingsPropsType = {
-    isSettingsOpen: boolean
-}
-
-export const Settings: React.FC<SettingsPropsType> = ({isSettingsOpen}) => {
-    return <div>
-        Settings
     </div>
 }
