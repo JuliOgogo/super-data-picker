@@ -23,28 +23,30 @@ export function SuperDataPicker() {
                   setStartDate={setStartDate}
                   setEndDate={setEndDate}/>
 
-        <ReactDatePicker
-            selectsStart
-            dateFormat={'dd-MM-yyyy'}
-            placeholderText={'Select start date'}
+        <div className={s.dataPickers}>
+            <ReactDatePicker
+                selectsStart
+                dateFormat={'dd-MM-yyyy'}
+                placeholderText={'Select start date'}
 
-            startDate={startDate}
-            endDate={endDate}
+                startDate={startDate}
+                endDate={endDate}
 
-            selected={startDate}
-            onChange={(date) => onStartChangeHandler(date)}/>
+                selected={startDate}
+                onChange={(date) => onStartChangeHandler(date)}/>
 
-        <ReactDatePicker
-            selectsEnd
-            dateFormat={'dd-MM-yyyy'}
-            placeholderText={'Select end date'}
+            <ReactDatePicker
+                selectsEnd
+                dateFormat={'dd-MM-yyyy'}
+                placeholderText={'Select end date'}
 
-            startDate={startDate}
-            endDate={endDate}
+                startDate={startDate}
+                endDate={endDate}
 
-            selected={endDate}
-            onChange={(date) => onEndChangeHandler(date)}
-            minDate={startDate}/>
+                selected={endDate}
+                onChange={(date) => onEndChangeHandler(date)}
+                minDate={startDate}/>
+        </div>
 
         <button onClick={uploadOnClickHandler}>Upload</button>
 
