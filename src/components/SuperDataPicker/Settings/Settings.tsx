@@ -6,6 +6,8 @@ type SettingsPropsType = {
     setIsSettingsOpen: (value: boolean) => void
     startDate: Date | null | undefined
     endDate: Date | null | undefined
+    startDateInRange: Date | null | undefined
+    endDateInRange: Date | null | undefined
     setStartDate: (data: Date | null) => void
     setEndDate: (data: any) => void
 }
@@ -16,11 +18,12 @@ export const Settings: React.FC<SettingsPropsType> = ({
                                                           startDate,
                                                           setStartDate,
                                                           endDate,
-                                                          setEndDate
+                                                          setEndDate,
+                                                          startDateInRange, endDateInRange
                                                       }) => {
 
-    const startDateStr = JSON.stringify(startDate)
-    const endDateStr = JSON.stringify(endDate)
+    const startDateInRangeStr = JSON.stringify(startDateInRange)
+    const endDateInRangeStr = JSON.stringify(endDateInRange)
 
     const todayOnClickHandler = () => {
         setStartDate(new Date())
@@ -30,19 +33,19 @@ export const Settings: React.FC<SettingsPropsType> = ({
 
     const thisWeekOnClickHandler = () => {
         setStartDate(new Date())
-        setEndDate(new Date().setDate(new Date().getDate() + 7))
+        setEndDate(new Date(new Date().setDate(new Date().getDate() + 7)))
         setIsSettingsOpen(false)
     }
 
     const thisMonthOnClickHandler = () => {
         setStartDate(new Date())
-        setEndDate(new Date().setDate(new Date().getDate() + 30))
+        setEndDate(new Date(new Date().setDate(new Date().getDate() + 30)))
         setIsSettingsOpen(false)
     }
 
     const recentlyOnClickHandler = () => {
-        if (startDate) setStartDate(new Date(startDate))
-        if (endDate) setEndDate(new Date(endDate))
+        if (startDateInRange) setStartDate(new Date(startDateInRange))
+        if (endDateInRange) setEndDate(new Date(endDateInRange))
         setIsSettingsOpen(false)
     }
 
@@ -55,9 +58,9 @@ export const Settings: React.FC<SettingsPropsType> = ({
         <div onClick={thisWeekOnClickHandler}>This week</div>
         <div onClick={thisMonthOnClickHandler}>This month</div>
 
-        {startDate && endDate ? <div onClick={recentlyOnClickHandler}>
+        {startDateInRangeStr && endDateInRangeStr ? <div onClick={recentlyOnClickHandler}>
             <span>Recently used date ranges</span>
-            <div>{startDateStr} - {endDateStr}</div>
+            <div>{startDateInRangeStr} - {endDateInRangeStr}</div>
         </div> : null}
 
     </div>

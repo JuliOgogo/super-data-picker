@@ -9,6 +9,9 @@ export function SuperDataPicker() {
     const [endDate, setEndDate] = useState<Date | null>()
     const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
+    const [startDateInRange, setStartDateInRange] = useState<Date | null>()
+    const [endDateInRange, setEndDateInRange] = useState<Date | null>()
+
     const onStartChangeHandler = (date: Date | null) => {
         if (date) {
             setStartDate(date)
@@ -19,6 +22,11 @@ export function SuperDataPicker() {
         if (date) {
             setEndDate(date)
         }
+    }
+
+    const uploadOnClickHandler = () => {
+        setStartDateInRange(startDate)
+        setEndDateInRange(endDate)
     }
 
     const onClickHandler = () => {
@@ -34,6 +42,8 @@ export function SuperDataPicker() {
                   setIsSettingsOpen={setIsSettingsOpen}
                   startDate={startDate}
                   endDate={endDate}
+                  startDateInRange={startDateInRange}
+                  endDateInRange={endDateInRange}
                   setStartDate={setStartDate}
                   setEndDate={setEndDate}/>
 
@@ -60,6 +70,7 @@ export function SuperDataPicker() {
             onChange={(date) => onEndChangeHandler(date)}
             minDate={startDate}/>
 
+        <button onClick={uploadOnClickHandler}>Upload</button>
         <button onClick={onClickHandler}>Refresh</button>
     </div>
 }
