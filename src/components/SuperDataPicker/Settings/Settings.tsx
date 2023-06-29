@@ -19,8 +19,8 @@ export const Settings: React.FC<SettingsPropsType> = ({
                                                           setEndDate
                                                       }) => {
 
-    const startDateStr = startDate?.toDateString()
-    const endDateStr = endDate?.toDateString()
+    const startDateStr = JSON.stringify(startDate)
+    const endDateStr = JSON.stringify(endDate)
 
     const todayOnClickHandler = () => {
         setStartDate(new Date())
@@ -55,7 +55,7 @@ export const Settings: React.FC<SettingsPropsType> = ({
         <div onClick={thisWeekOnClickHandler}>This week</div>
         <div onClick={thisMonthOnClickHandler}>This month</div>
 
-        {startDate || endDate ? <div onClick={recentlyOnClickHandler}>
+        {startDate && endDate ? <div onClick={recentlyOnClickHandler}>
             <span>Recently used date ranges</span>
             <div>{startDateStr} - {endDateStr}</div>
         </div> : null}
