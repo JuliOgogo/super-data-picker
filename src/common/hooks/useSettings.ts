@@ -41,6 +41,7 @@ export const useSettings = ({
     const onClickHandler = () => {
         setStartDate(null)
         setEndDate(null)
+        setIsSettingsOpen(false)
     }
 
     return {
