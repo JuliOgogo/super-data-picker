@@ -1,28 +1,30 @@
-import React, {Dispatch, SetStateAction} from 'react';
-import {getFromLocalStorage} from '../../../common/localStorage';
+import React from 'react';
 import s from './Settings.module.css'
 
 type SettingsPropsType = {
     isSettingsOpen: boolean
     setIsSettingsOpen: (value: boolean) => void
-    setStartDate: (data: Date) => void
-    setEndDate: any
-    //setEndDate: Dispatch<SetStateAction<Date | undefined>>
+    startDate: Date | null | undefined
+    endDate: Date | null | undefined
+    setStartDate: (data: Date | null) => void
+    setEndDate: (data: any) => void
 }
 
 export const Settings: React.FC<SettingsPropsType> = ({
                                                           isSettingsOpen,
                                                           setIsSettingsOpen,
+                                                          startDate,
                                                           setStartDate,
+                                                          endDate,
                                                           setEndDate
                                                       }) => {
 
-    const startDate = getFromLocalStorage('startDate')?.slice(0, 16)
-    const endDate = getFromLocalStorage('endDate')?.slice(0, 16)
+    const startDateStr = JSON.stringify(startDate)
+    const endDateStr = JSON.stringify(endDate)
 
     const todayOnClickHandler = () => {
         setStartDate(new Date())
-        setEndDate()
+        setEndDate(null)
         setIsSettingsOpen(false)
     }
 
@@ -55,7 +57,7 @@ export const Settings: React.FC<SettingsPropsType> = ({
 
         {startDate || endDate ? <div onClick={recentlyOnClickHandler}>
             <span>Recently used date ranges</span>
-            <div>{startDate} - {endDate}</div>
+            <div>{startDateStr} - {endDateStr}</div>
         </div> : null}
 
     </div>

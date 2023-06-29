@@ -1,33 +1,29 @@
 import React, {useState} from 'react';
 import ReactDatePicker from 'react-datepicker';
-import {setToLocalStorage} from '../../common/localStorage';
 import {Settings} from './Settings/Settings';
 import s from './SuperDataPicker.module.css'
 
 export function SuperDataPicker() {
 
-    const [startDate, setStartDate] = useState<Date>()
-    const [endDate, setEndDate] = useState<Date>()
+    const [startDate, setStartDate] = useState<Date | null>()
+    const [endDate, setEndDate] = useState<Date | null>()
     const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
     const onStartChangeHandler = (date: Date | null) => {
         if (date) {
             setStartDate(date)
-            setToLocalStorage('startDate', date)
         }
     }
 
     const onEndChangeHandler = (date: Date | null) => {
         if (date) {
             setEndDate(date)
-            setToLocalStorage('endDate', date)
         }
     }
 
     const onClickHandler = () => {
-        setStartDate(undefined)
-        setEndDate(undefined)
-        localStorage.clear()
+        setStartDate(null)
+        setEndDate(null)
     }
 
     return <div className={s.sdp}>
@@ -36,6 +32,8 @@ export function SuperDataPicker() {
 
         <Settings isSettingsOpen={isSettingsOpen}
                   setIsSettingsOpen={setIsSettingsOpen}
+                  startDate={startDate}
+                  endDate={endDate}
                   setStartDate={setStartDate}
                   setEndDate={setEndDate}/>
 
