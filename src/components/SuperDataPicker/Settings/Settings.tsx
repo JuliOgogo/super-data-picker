@@ -3,7 +3,7 @@ import s from './Settings.module.css'
 import clsx from 'clsx';
 import {useSettings} from '../../../common/hooks/useSettings';
 
-type SettingsPropsType = {
+interface SettingsPropsType {
     isSettingsOpen: boolean
     setIsSettingsOpen: (value: boolean) => void
     startDateInRange: Date | null | undefined
@@ -20,8 +20,8 @@ export const Settings: React.FC<SettingsPropsType> = ({
                                                           startDateInRange, endDateInRange
                                                       }) => {
 
-    const startDateInRangeStr = JSON.stringify(startDateInRange).slice(0, 11)
-    const endDateInRangeStr = JSON.stringify(endDateInRange).slice(0, 11)
+    const startDateInRangeStr = JSON.stringify(startDateInRange)?.slice(1, 11)
+    const endDateInRangeStr = JSON.stringify(endDateInRange)?.slice(1, 11)
 
     const {
         todayOnClickHandler,
@@ -35,12 +35,15 @@ export const Settings: React.FC<SettingsPropsType> = ({
 
     return <div className={settingsClassName}>
 
-        <div onClick={todayOnClickHandler}>Today</div>
-        <div onClick={thisWeekOnClickHandler}>This week</div>
-        <div onClick={thisMonthOnClickHandler}>This month</div>
+        <div className={s.commonly}>
+            <div>Commonly used:</div>
+            <div onClick={todayOnClickHandler}>Today</div>
+            <div onClick={thisWeekOnClickHandler}>This week</div>
+            <div onClick={thisMonthOnClickHandler}>This month</div>
+        </div>
 
         {startDateInRangeStr && endDateInRangeStr ? <div onClick={recentlyOnClickHandler}>
-            <div>Recently used date ranges</div>
+            <div>Recently used date ranges:</div>
             <div>{startDateInRangeStr} - {endDateInRangeStr}</div>
         </div> : null}
 
