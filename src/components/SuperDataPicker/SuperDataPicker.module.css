@@ -53,3 +53,8 @@ button {
 button:hover {
     background-color: #3331ab;
 }
+
+img {
+    width: 30px;
+    height: 30px;
+}

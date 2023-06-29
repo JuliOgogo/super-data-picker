@@ -3,6 +3,7 @@ import ReactDatePicker from 'react-datepicker';
 import {Settings} from './Settings/Settings';
 import s from './SuperDataPicker.module.css'
 import {useSuperDataPicker} from '../../common/hooks/useSuperDataPicker';
+import icon from '../../assets/images/icon-menu.png'
 
 export function SuperDataPicker() {
 
@@ -14,7 +15,7 @@ export function SuperDataPicker() {
 
     return <div className={s.sdp}>
 
-        <button onClick={() => setIsSettingsOpen(!isSettingsOpen)}>Settings</button>
+        <img src={icon} onClick={() => setIsSettingsOpen(!isSettingsOpen)} alt={'settings'}/>
 
         <Settings isSettingsOpen={isSettingsOpen}
                   setIsSettingsOpen={setIsSettingsOpen}
