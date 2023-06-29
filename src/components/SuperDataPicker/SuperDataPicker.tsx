@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ReactDatePicker from 'react-datepicker';
 import {setToLocalStorage} from '../../common/localStorage';
 import {Settings} from './Settings/Settings';
+import s from './SuperDataPicker.module.css'
 
 export function SuperDataPicker() {
 
@@ -29,7 +30,9 @@ export function SuperDataPicker() {
         localStorage.clear()
     }
 
-    return <div>
+    return <div className={s.sdp}>
+
+        <button onClick={() => setIsSettingsOpen(!isSettingsOpen)}>Settings</button>
 
         <Settings isSettingsOpen={isSettingsOpen}
                   setIsSettingsOpen={setIsSettingsOpen}

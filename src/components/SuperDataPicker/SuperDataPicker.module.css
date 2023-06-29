@@ -1,0 +1,7 @@
+.sdp {
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30px;
+}

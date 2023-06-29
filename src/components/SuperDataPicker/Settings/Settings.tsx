@@ -1,5 +1,6 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {getFromLocalStorage} from '../../../common/localStorage';
+import s from './Settings.module.css'
 
 type SettingsPropsType = {
     isSettingsOpen: boolean
@@ -21,7 +22,7 @@ export const Settings: React.FC<SettingsPropsType> = ({
 
     const todayOnClickHandler = () => {
         setStartDate(new Date())
-        setEndDate(new Date())
+        setEndDate()
         setIsSettingsOpen(false)
     }
 
@@ -43,19 +44,19 @@ export const Settings: React.FC<SettingsPropsType> = ({
         setIsSettingsOpen(false)
     }
 
-    return <>
-        <button onClick={() => setIsSettingsOpen(true)}>Settings</button>
+    const settingsClassName = s.settings
+        + (isSettingsOpen ? ' ' + s.open : '')
 
-        {isSettingsOpen ? <div>
-            <div onClick={todayOnClickHandler}>Today</div>
-            <div onClick={thisWeekOnClickHandler}>This week</div>
-            <div onClick={thisMonthOnClickHandler}>This month</div>
+    return <div className={settingsClassName}>
 
-            {startDate || endDate ? <div onClick={recentlyOnClickHandler}>
-                <span>Recently used date ranges</span>
-                <div>{startDate} - {endDate}</div>
-            </div> : null}
+        <div onClick={todayOnClickHandler}>Today</div>
+        <div onClick={thisWeekOnClickHandler}>This week</div>
+        <div onClick={thisMonthOnClickHandler}>This month</div>
 
+        {startDate || endDate ? <div onClick={recentlyOnClickHandler}>
+            <span>Recently used date ranges</span>
+            <div>{startDate} - {endDate}</div>
         </div> : null}
-    </>
+
+    </div>
 }
