@@ -19,8 +19,8 @@ export const Settings: React.FC<SettingsPropsType> = ({
                                                           setEndDate
                                                       }) => {
 
-    const startDateStr = JSON.stringify(startDate)
-    const endDateStr = JSON.stringify(endDate)
+    const startDateStr = startDate?.toDateString()
+    const endDateStr = endDate?.toDateString()
 
     const todayOnClickHandler = () => {
         setStartDate(new Date())
